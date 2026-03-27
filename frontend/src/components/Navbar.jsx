@@ -28,26 +28,30 @@ const Navbar = () => {
   }, [location.pathname]);
 
   useEffect(() => {
-    // 🌍 Multi-Language Switcher Initialization
+    // 🌍 Multi-Language Switcher Robust Initialization
     const scriptId = 'google-translate-script';
-    if (!document.getElementById(scriptId)) {
-      const script = document.createElement('script');
-      script.id = scriptId;
-      script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-      script.async = true;
-      document.body.appendChild(script);
-    }
-
+    
     window.googleTranslateElementInit = () => {
-      if (window.google && window.google.translate) {
+      if (window.google && window.google.translate && document.getElementById('google_translate_element')) {
         new window.google.translate.TranslateElement({
           pageLanguage: 'en',
           includedLanguages: 'en,hi,mr',
           layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
           autoDisplay: false
         }, 'google_translate_element');
+        console.log("Translator Initialized");
       }
     };
+
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement('script');
+      script.id = scriptId;
+      script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      script.async = true;
+      document.body.appendChild(script);
+    } else if (window.google && window.google.translate) {
+      window.googleTranslateElementInit();
+    }
   }, []);
 
   const primaryLinks = [
@@ -151,19 +155,20 @@ const Navbar = () => {
             </Link>
           </div>
 
-            {/* Right Side: Search/Profile */}
-            <div className="flex items-center justify-end min-w-max gap-4 ml-4">
-              
-              {/* Language Selector & Search/Profile */}
-              <div className="flex items-center ml-auto gap-2 lg:gap-4">
-                {/* Language Switcher - Clean Integration */}
-                <div className="hidden sm:flex items-center bg-gray-50/50 border border-gray-100 px-2 py-1 rounded-xl h-10 hover:bg-white hover:border-agri-main transition-all">
-                  <div id="google_translate_element" className="max-w-[140px] overflow-hidden"></div>
-                </div>
+          {/* Right Side: Translation & Search/Profile */}
+          <div className="flex items-center justify-end min-w-max gap-4 ml-4">
+                      {/* Language Selector & Search/Profile */}
+            <div className="flex items-center ml-auto gap-2 lg:gap-4 group">
+              {/* Language Switcher - Clean Integration */}
+              <div className="hidden sm:flex items-center bg-gray-50 border border-gray-200 px-3 py-1.5 rounded-2xl h-11 hover:bg-white hover:border-agri-main transition-all shadow-sm">
+                <Navigation size={16} className="text-gray-400 mr-2 group-hover:text-agri-main transition-colors" />
+                <div id="google_translate_element" className="max-w-[130px] overflow-hidden min-w-[120px]"></div>
+              </div>
+            </div>
 
-              {/* User Profile / Login (Desktop) */}
-              <div className="hidden lg:flex items-center space-x-4 min-w-max">
-                {isAuthenticated ? (
+            {/* User Profile / Login (Desktop) */}
+            <div className="hidden lg:flex items-center space-x-4 min-w-max">
+              {isAuthenticated ? (
                 <div className="flex items-center gap-4">
                   <Link to="/profile" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-xl transition-colors cursor-pointer border border-transparent hover:border-gray-100">
                     <div className="w-9 h-9 bg-[#F9FBFA] border border-[#E9F0EC] rounded-full flex items-center justify-center shadow-sm">
