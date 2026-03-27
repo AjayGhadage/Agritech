@@ -56,11 +56,9 @@ mongoose.connect(process.env.MONGO_URI)
 // 📦 ROUTES
 // ============================
 app.use("/api/auth", require("./routes/authRoutes"));
-app.use("/api/auth", require("./routes/googleAuth"));
 app.use("/api/prices", require("./routes/priceRoutes"));
 app.use("/api/scan-history", require("./routes/scanHistoryRoutes"));
 app.use("/api/calendar", require("./routes/calendarRoutes"));
-app.use("/api/compare", require("./routes/comparisonRoutes"));
 app.use("/api/advisory", require("./routes/wheatheroute"));
 app.use("/api/disease", require("./routes/diseaseRoutes"));
 app.use("/api/voice", require("./routes/voiceRoutes"));
