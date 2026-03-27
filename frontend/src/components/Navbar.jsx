@@ -27,6 +27,29 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
+  useEffect(() => {
+    // 🌍 Multi-Language Switcher Initialization
+    const scriptId = 'google-translate-script';
+    if (!document.getElementById(scriptId)) {
+      const script = document.createElement('script');
+      script.id = scriptId;
+      script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+      script.async = true;
+      document.body.appendChild(script);
+    }
+
+    window.googleTranslateElementInit = () => {
+      if (window.google && window.google.translate) {
+        new window.google.translate.TranslateElement({
+          pageLanguage: 'en',
+          includedLanguages: 'en,hi,mr',
+          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+          autoDisplay: false
+        }, 'google_translate_element');
+      }
+    };
+  }, []);
+
   const primaryLinks = [
     { name: 'Crop Recs', path: '/crop', icon: Leaf },
     { name: 'Disease Scan', path: '/disease', icon: ShieldAlert },
@@ -135,6 +158,9 @@ const Navbar = () => {
             <div className="hidden sm:block">
                <div id="google_translate_element"></div>
             </div>
+
+            {/* Language Selector (Universal) */}
+            <div id="google_translate_element" className="ml-auto mr-4 scale-90 sm:scale-100"></div>
 
             {/* User Profile / Login (Desktop) */}
             <div className="hidden lg:flex items-center space-x-6 min-w-max pl-6">
