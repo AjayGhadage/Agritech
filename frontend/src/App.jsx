@@ -16,6 +16,7 @@ import MyFarm from './pages/MyFarm';
 import Subsidies from './pages/Subsidies';
 import Calculator from './pages/Calculator';
 import Logistics from './pages/Logistics';
+import AboutUs from './pages/AboutUs';
 import { AuthProvider, AuthContext } from './context/AuthContext';
 import './index.css';
 
@@ -42,6 +43,8 @@ export default function App() {
               <Routes>
                 <Route path="/auth" element={<AuthPage />} />
 
+                <Route path="/about" element={<AboutUs />} />
+
                 {/* Protected Routes */}
                 <Route path="/" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
                 <Route path="/crop" element={<ProtectedRoute><CropRecommendation /></ProtectedRoute>} />
@@ -59,10 +62,10 @@ export default function App() {
             </main>
             <ChatbotOverlay />
 
-            <footer className="bg-white border-t border-gray-200 mt-auto">
+            <footer className="bg-[#1a472a] border-t border-[#2d5a3b] mt-auto">
               <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-                <p className="text-center text-sm text-gray-500">
-                  &copy; 2026 AgriTech. All Rights Reserved. | Made with ❤️ARYA for Farmers
+                <p className="text-center text-sm text-gray-200">
+                  &copy; 2026 AgriTech. All Rights Reserved. | Made with ❤️ ARYA for Farmers
                 </p>
               </div>
             </footer>
