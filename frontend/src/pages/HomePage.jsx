@@ -169,7 +169,7 @@ const HomePage = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:bg-white/15 transition-all">
               <div className="w-16 h-16 bg-agri-main rounded-2xl flex items-center justify-center text-white text-2xl font-black mb-6">RP</div>
-              <h3 className="text-2xl font-black text-white mb-2">Ramesh Patil</h3>
+              <h3 className="text-2xl font-black text-white mb-2">Rohit Gaikwad</h3>
               <p className="text-green-300 font-bold text-sm mb-4">Nashik, Maharashtra</p>
               <p className="text-green-100/90 text-sm leading-relaxed mb-6">"Using the Deep AI Pathology engine, I saved my 5-acre tomato plot from early blight by applying the recommended Organic Copper fungicide exactly on time. Saved ₹40,000 in potential losses."</p>
               <div className="bg-white/10 rounded-xl p-4 flex items-center justify-between border border-white/10">
@@ -182,7 +182,7 @@ const HomePage = () => {
 
             <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:bg-white/15 transition-all">
               <div className="w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center text-white text-2xl font-black mb-6">SK</div>
-              <h3 className="text-2xl font-black text-white mb-2">Suresh Kumar</h3>
+              <h3 className="text-2xl font-black text-white mb-2">Ajay Ghadage</h3>
               <p className="text-orange-300 font-bold text-sm mb-4">Pune, Maharashtra</p>
               <p className="text-green-100/90 text-sm leading-relaxed mb-6">"I checked the Smart Route Logistics AI before selling my 100 quintals of Onion. Instead of the local yard, it calculated a ₹45,000 net extra profit if I rented a truck to Vashi APMC. The AI math was flawless."</p>
               <div className="bg-white/10 rounded-xl p-4 flex items-center justify-between border border-white/10">
@@ -195,7 +195,7 @@ const HomePage = () => {
 
             <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:bg-white/15 transition-all">
               <div className="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center text-white text-2xl font-black mb-6">AD</div>
-              <h3 className="text-2xl font-black text-white mb-2">Anita Devi</h3>
+              <h3 className="text-2xl font-black text-white mb-2">Avishkar Gunjal</h3>
               <p className="text-blue-300 font-bold text-sm mb-4">Jalgaon, Maharashtra</p>
               <p className="text-green-100/90 text-sm leading-relaxed mb-6">"I didn't know I was eligible for the MahaDBT Drip Irrigation scheme. The Govt Subsidy Finder matched my land size and caste instantly. I secured an 80% subsidy safely and modernized my farm."</p>
               <div className="bg-white/10 rounded-xl p-4 flex items-center justify-between border border-white/10">
