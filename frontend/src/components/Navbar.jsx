@@ -151,20 +151,19 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Right Side: Translate widget + Auth/Profile */}
-          <div className="flex items-center justify-end min-w-max gap-4 ml-4">
-            
-            {/* Google Translate Native Element Container */}
-            <div className="hidden sm:block">
-               <div id="google_translate_element"></div>
-            </div>
+            {/* Right Side: Search/Profile */}
+            <div className="flex items-center justify-end min-w-max gap-4 ml-4">
+              
+              {/* Language Selector & Search/Profile */}
+              <div className="flex items-center ml-auto gap-2 lg:gap-4">
+                {/* Language Switcher - Clean Integration */}
+                <div className="hidden sm:flex items-center bg-gray-50/50 border border-gray-100 px-2 py-1 rounded-xl h-10 hover:bg-white hover:border-agri-main transition-all">
+                  <div id="google_translate_element" className="max-w-[140px] overflow-hidden"></div>
+                </div>
 
-            {/* Language Selector (Universal) */}
-            <div id="google_translate_element" className="ml-auto mr-4 scale-90 sm:scale-100"></div>
-
-            {/* User Profile / Login (Desktop) */}
-            <div className="hidden lg:flex items-center space-x-6 min-w-max pl-6">
-              {isAuthenticated ? (
+              {/* User Profile / Login (Desktop) */}
+              <div className="hidden lg:flex items-center space-x-4 min-w-max">
+                {isAuthenticated ? (
                 <div className="flex items-center gap-4">
                   <Link to="/profile" className="flex items-center gap-2 hover:bg-gray-50 p-2 rounded-xl transition-colors cursor-pointer border border-transparent hover:border-gray-100">
                     <div className="w-9 h-9 bg-[#F9FBFA] border border-[#E9F0EC] rounded-full flex items-center justify-center shadow-sm">

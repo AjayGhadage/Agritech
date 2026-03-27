@@ -40,32 +40,39 @@
   background: #113a1d; 
 }
 
-/* Google Translate Overrides */
+/* 🌍 Google Translate Premium Polishing */
 .goog-te-banner-frame.skiptranslate {
   display: none !important;
 }
 body {
   top: 0px !important;
 }
-.goog-logo-link {
+.goog-logo-link, 
+.goog-te-gadget span,
+.goog-te-gadget div {
   display: none !important;
 }
 .goog-te-gadget {
   color: transparent !important;
-  font-size: 0px;
+  font-size: 0px !important;
 }
 .goog-te-combo {
-  background-color: transparent;
-  border: 1px solid #E9F0EC;
-  color: #1A2E24;
-  padding: 4px 8px;
-  border-radius: 8px;
-  font-size: 12px !important;
-  font-weight: 700;
-  cursor: pointer;
-  outline: none;
+  background-color: transparent !important;
+  border: none !important;
+  color: #1A2E24 !important;
+  padding: 2px 4px !important;
+  border-radius: 6px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  outline: none !important;
+  font-family: 'Inter', sans-serif !important;
+  margin: 0 !important;
+  width: 100% !important;
 }
 .goog-te-combo:hover {
-  border-color: #1D5D30;
-  background-color: white;
+  color: #1D5D30 !important;
+}
+iframe.VIpgJd-ZVi9od-ORHb-O365-Khj3W8 {
+  display: none !important;
 }
