@@ -41,6 +41,8 @@ app.add_middleware(
 
 # Get base path
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+print(f"DEBUG: BASE_DIR is {BASE_DIR}")
+print(f"DEBUG: Files in BASE_DIR: {os.listdir(BASE_DIR)}")
 
 # Crop model
 crop_model = pickle.load(open(os.path.join(BASE_DIR, "model.pkl"), "rb"))

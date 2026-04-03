@@ -39,19 +39,6 @@ __pycache__/
 .ipynb_checkpoints/
 
 # ================================
-# ML Model Files (large binaries)
-# ================================
-*.pkl
-*.h5
-*.hdf5
-*.model
-*.weights
-*.onnx
-data.pkl
-model.pkl
-plant_disease_model.h5
-
-# ================================
 # Uploads / User Data
 # ================================
 backend/uploads/
