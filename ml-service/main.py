@@ -4,7 +4,6 @@
 from fastapi import FastAPI, File, UploadFile
 from pydantic import BaseModel
 import numpy as np
-import tensorflow as tf
 from PIL import Image
 import pickle
 import io
@@ -47,31 +46,11 @@ print(f"DEBUG: Files in BASE_DIR: {os.listdir(BASE_DIR)}")
 # Crop model
 crop_model = pickle.load(open(os.path.join(BASE_DIR, "model.pkl"), "rb"))
 
-# --- Disease Model Loading ---
+# We delay loading the heavy disease models until an actual request is made
+# so that the server doesn't hit Render's 512MB RAM limit on boot.
 disease_model = None
 is_torch_model = False
 transform = None
-
-try:
-    import torch
-    from torchvision import transforms
-    disease_model = torch.load(os.path.join(BASE_DIR, "plant_disease_model.pkl"), map_location=torch.device('cpu'))
-    disease_model.eval()
-    is_torch_model = True
-    transform = transforms.Compose([
-        transforms.Resize((224, 224)),
-        transforms.ToTensor(),
-        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
-    ])
-    print("✅ Loaded PyTorch model (.pkl)")
-except Exception as e:
-    print(f"⚠️ PyTorch load failed: {e}. Falling back to TensorFlow (.h5)")
-    try:
-        disease_model = tf.keras.models.load_model(os.path.join(BASE_DIR, "plant_disease_model.h5"))
-        is_torch_model = False
-        print("✅ Loaded TensorFlow model (.h5)")
-    except Exception as e2:
-        print(f"❌ All models failed: {e2}")
 
 # Groq client
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
@@ -284,8 +263,27 @@ async def predict_disease(file: UploadFile = File(...)):
             pass # Fail open, proceed to raw ML model
 
         # =========================================================
-        # 2️⃣ RAW PYTORCH/TF DISEASE PREDICTION
+        # 2️⃣ RAW PYTORCH/TF DISEASE PREDICTION (Lazy Load)
         # =========================================================
+        
+        global disease_model, is_torch_model, transform
+        if disease_model is None:
+            # We lazy load here to prevent RAM crashes on server start
+            try:
+                import torch
+                from torchvision import transforms
+                disease_model = torch.load(os.path.join(BASE_DIR, "plant_disease_model.pkl"), map_location=torch.device('cpu'))
+                disease_model.eval()
+                is_torch_model = True
+                transform = transforms.Compose([
+                    transforms.Resize((224, 224)),
+                    transforms.ToTensor(),
+                    transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+                ])
+            except Exception as e:
+                import tensorflow as tf
+                disease_model = tf.keras.models.load_model(os.path.join(BASE_DIR, "plant_disease_model.h5"))
+                is_torch_model = False
 
         if is_torch_model:
             # 🔄 PyTorch Logic
