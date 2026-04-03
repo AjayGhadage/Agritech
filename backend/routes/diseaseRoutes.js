@@ -16,8 +16,9 @@ router.post("/", upload.single("image"), async (req, res) => {
     formData.append("file", req.file.buffer, "image.jpg");
 
     // 🔗 Call FastAPI
+    const mlApiUrl = process.env.ML_API_URL || "http://localhost:8001";
     const response = await axios.post(
-      "http://127.0.0.1:8001/predict-disease",
+      `${mlApiUrl}/predict-disease`,
       formData,
       {
         headers: formData.getHeaders(),

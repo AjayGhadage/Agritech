@@ -37,8 +37,9 @@ router.get("/", async (req, res) => {
     let newsPrices = [];
 
     try {
+      const mlApiUrl = process.env.ML_API_URL || "http://localhost:8001";
       const scrapeRes = await axios.get(
-        `http://localhost:8001/scrape-price?crop=${crop}&location=${mappedLocation}`
+        `${mlApiUrl}/scrape-price?crop=${crop}&location=${mappedLocation}`
       );
 
       newsPrices = scrapeRes.data.prices || scrapeRes.data.news_prices || [];
