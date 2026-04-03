@@ -1,4 +1,4 @@
-const CACHE_NAME = 'agritech-v1';
+const CACHE_NAME = 'agriarya-v1';
 const urlsToCache = [
   '/',
   '/index.html',

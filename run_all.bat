@@ -1,7 +1,7 @@
 @echo off
-title Agritech Platform Launcher
+title Agriarya Platform Launcher
 echo ==================================================
-echo       Starting Agritech Platform Services
+echo       Starting Agriarya Platform Services
 echo ==================================================
 echo.
 

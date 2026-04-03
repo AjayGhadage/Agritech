@@ -103,7 +103,7 @@ const HomePage = () => {
       {/* Quick Stats or extra dashboard info can go here */}
       <section className="bg-agri-light py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-           <h2 className="text-3xl font-bold text-gray-900 mb-8">Why Use AgriTech?</h2>
+           <h2 className="text-3xl font-bold text-gray-900 mb-8">Why Use AgriArya?</h2>
            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
               <div className="glass-panel p-6">
                 <div className="text-agri-main font-bold text-4xl mb-4">98%</div>
@@ -163,7 +163,7 @@ const HomePage = () => {
           <div className="text-center mb-16">
             <p className="text-[#8FB89A] font-black uppercase tracking-[0.2em] text-sm mb-3">Kisaan Prerana</p>
             <h2 className="text-4xl text-white font-black tracking-tight">Community Success Stories 🤝</h2>
-            <p className="text-green-100/80 mt-4 max-w-2xl mx-auto">Connect with top-performing local farmers who used AgriTech to revolutionize their yields. Peer-to-peer learning builds stronger communities.</p>
+            <p className="text-green-100/80 mt-4 max-w-2xl mx-auto">Connect with top-performing local farmers who used AgriArya to revolutionize their yields. Peer-to-peer learning builds stronger communities.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

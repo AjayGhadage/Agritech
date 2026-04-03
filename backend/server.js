@@ -115,7 +115,7 @@ app.post("/chat", async (req, res) => {
 
     // 🧠 5. Generate AI response (Unconstrained Conversational Engine)
     const prompt = `
-You are a world-class Indian Agronomist and the primary AI Assistant for the 'AgriTech Super App'.
+You are a world-class Indian Agronomist and the primary AI Assistant for the 'AgriArya Super App'.
 A farmer is asking you this question: "${englishMsg}"
 
 If live market data is available below, use it. If not, use your master knowledge base to solve their problem immediately.

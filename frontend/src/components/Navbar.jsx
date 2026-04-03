@@ -77,11 +77,17 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center min-w-max pr-6">
-            <Link to="/" className="flex items-center gap-2 group">
-              <div className="p-2 bg-[#1A2E24] rounded-xl text-white group-hover:bg-agri-main transition-colors shadow-sm">
-                <Leaf size={22} className="stroke-[2.5]" />
+            <Link to="/" className="flex items-center gap-4 group">
+              <div className="relative w-14 h-14 flex items-center justify-center">
+                <img 
+                  src="/logo.png" 
+                  alt="AgriArya Logo" 
+                  className="w-full h-full object-contain scale-[1.1] transform group-hover:scale-[1.2] transition-transform duration-300 drop-shadow-md" 
+                />
               </div>
-              <span className="font-black text-2xl text-[#1A2E24] tracking-tight hidden sm:block">Agri<span className="text-agri-main">Tech</span></span>
+              <span className="font-black text-2xl text-[#1A2E24] tracking-tight hidden sm:block">
+                Agri<span className="text-agri-main">Arya</span>
+              </span>
             </Link>
           </div>
 
@@ -252,6 +258,18 @@ const Navbar = () => {
                 </Link>
               );
             })}
+
+            {/* About Us (Mobile) */}
+            <p className="px-3 text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-6 mb-2">Information</p>
+            <Link
+              to="/about"
+              className={`flex items-center gap-3 px-3 py-3 rounded-xl font-bold transition-all ${
+                location.pathname === '/about' ? 'bg-[#F9FBFA] text-agri-main border border-[#E9F0EC]' : 'text-gray-600 hover:bg-gray-50'
+              }`}
+            >
+              <Info size={18} className={location.pathname === '/about' ? 'text-agri-main' : 'text-gray-400'} />
+              About Us
+            </Link>
 
             {/* Mobile Auth Section */}
             <div className="mt-8 pt-6 border-t border-[#E9F0EC] px-3">

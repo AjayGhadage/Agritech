@@ -48,13 +48,15 @@ body {
   top: 0px !important;
 }
 .goog-logo-link, 
-.goog-te-gadget span,
-.goog-te-gadget div {
+.goog-te-gadget > span > a {
   display: none !important;
 }
 .goog-te-gadget {
   color: transparent !important;
   font-size: 0px !important;
+}
+.goog-te-gadget .VIpgJd-ZVi9od-xl07Ob-lTBxed {
+  display: none !important;
 }
 .goog-te-combo {
   background-color: transparent !important;
