@@ -1,0 +1,35 @@
+services:
+  # Node.js Express Backend
+  - type: web
+    name: agritech-node-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PORT
+        value: 5001
+      - key: MONGO_URI
+        sync: false # Render dashboard will prompt you to provide this
+      - key: JWT_SECRET
+        sync: false
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+
+  # Python FastAPI ML Service
+  - type: web
+    name: agritech-ml-service
+    env: python
+    rootDir: ml-service
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.0
+      - key: GEMINI_API_KEY
+        sync: false # Render dashboard will prompt you to provide this
