@@ -90,7 +90,7 @@ season_map = {
 # ============================
 # 🏠 ROOT
 # ============================
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 def home():
     return {"message": "Agri AI API Running 🚀"}
 
