@@ -3,11 +3,11 @@ uvicorn==0.23.2
 tensorflow-cpu==2.15.0
 numpy<2.0.0
 pillow==10.0.1
-scikit-learn==1.3.2
+scikit-learn>=1.8.0
 requests==2.31.0
 python-multipart==0.0.6
-google-generativeai==0.3.1
-pydantic==2.4.2
-groq==0.4.2
-google-search-results==2.4.2
-python-dotenv==1.0.0
+google-generativeai
+pydantic
+groq
+google-search-results
+python-dotenv
