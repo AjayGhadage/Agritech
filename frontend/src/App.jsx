@@ -18,6 +18,7 @@ import MyFarm from './pages/MyFarm';
 import Subsidies from './pages/Subsidies';
 import Calculator from './pages/Calculator';
 import Logistics from './pages/Logistics';
+import AboutUs from './pages/AboutUs';
 import { AuthProvider, AuthContext } from './context/AuthContext';
 import './index.css';
 
