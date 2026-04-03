@@ -27,10 +27,7 @@ const AuthPage = () => {
     }
   };
 
-  const handleGuestLogin = () => {
-    login({ name: 'Guest Farmer', email: 'guest@agriarya.com', picture: null }, 'guest-token');
-    navigate('/');
-  };
+
 
   const handleAuthSubmit = async (e) => {
     e.preventDefault();
@@ -182,9 +179,6 @@ const AuthPage = () => {
             <div className="space-y-4 pt-4 border-t border-[#E9F0EC]">
               <div className="flex justify-center flex-col items-center gap-4">
                 <GoogleLogin onSuccess={handleGoogleSuccess} onError={() => setError("Google Login Failed")} theme="outline" size="large" />
-                <button onClick={handleGuestLogin} className="w-full border-2 border-[#E9F0EC] text-gray-500 py-3 rounded-xl font-bold hover:bg-gray-50 flex items-center justify-center gap-2 px-6">
-                  <Leaf size={16} /> Continue as Guest
-                </button>
               </div>
             </div>
           )}

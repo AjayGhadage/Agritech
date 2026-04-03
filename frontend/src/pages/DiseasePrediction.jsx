@@ -38,7 +38,7 @@ const DiseasePrediction = () => {
     formData.append("file", file);
 
     try {
-      const res = await axios.post('http://127.0.0.1:8001/predict-disease', formData, {
+      const res = await axios.post(`${ML_API_URL}/predict-disease`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       if (res.data.error) {
@@ -62,7 +62,7 @@ const DiseasePrediction = () => {
       }
     } catch (err) {
       console.error(err);
-      setError("Failed to connect to the prediction service. Ensure ML service is running on port 8001.");
+      setError(`Failed to connect to the prediction service. ML API: ${ML_API_URL}`);
     } finally {
       setLoading(false);
     }
