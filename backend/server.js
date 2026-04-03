@@ -4,6 +4,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const port = process.env.PORT || 5001;
 
 const verifyToken = require("./middleware/authMiddleware");
 const extractQuery = require("./utils/aiExtractor");
@@ -97,16 +98,16 @@ app.post("/chat", async (req, res) => {
       // 🔗 4. Call APIs for Live Context (Only if intents match)
       if (crop && location) {
         if (intents.includes("price")) {
-          const priceRes = await axios.get(`http://localhost:5001/api/prices?crop=${crop}&location=${location}`);
+          const priceRes = await axios.get(`http://localhost:${port}/api/prices?crop=${crop}&location=${location}`);
           priceData = priceRes.data;
         }
         if (intents.includes("advisory")) {
-          const advRes = await axios.get(`http://localhost:5001/api/advisory?crop=${crop}&location=${location}`);
+          const advRes = await axios.get(`http://localhost:${port}/api/advisory?crop=${crop}&location=${location}`);
           advisoryData = advRes.data;
         }
       }
       if (intents.includes("crop")) {
-        const crRes = await axios.post("http://localhost:5001/api/crop", req.body);
+        const crRes = await axios.post(`http://localhost:${port}/api/crop`, req.body);
         cropData = crRes.data;
       }
     } catch (e) {
@@ -155,7 +156,6 @@ app.get("/api/protected", verifyToken, (req, res) => {
 // ============================
 // 🚀 START SERVER
 // ============================
-const port = process.env.PORT || 5001;
 app.listen(port, () =>
   console.log(`Server running on port ${port}`)
 );
