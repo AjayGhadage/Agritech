@@ -39,8 +39,11 @@ app.add_middleware(
 # 📦 LOAD MODELS
 # ============================
 
+# Get base path
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # Crop model
-crop_model = pickle.load(open("model.pkl", "rb"))
+crop_model = pickle.load(open(os.path.join(BASE_DIR, "model.pkl"), "rb"))
 
 # --- Disease Model Loading ---
 disease_model = None
@@ -50,7 +53,7 @@ transform = None
 try:
     import torch
     from torchvision import transforms
-    disease_model = torch.load("plant_disease_model.pkl", map_location=torch.device('cpu'))
+    disease_model = torch.load(os.path.join(BASE_DIR, "plant_disease_model.pkl"), map_location=torch.device('cpu'))
     disease_model.eval()
     is_torch_model = True
     transform = transforms.Compose([
@@ -62,7 +65,7 @@ try:
 except Exception as e:
     print(f"⚠️ PyTorch load failed: {e}. Falling back to TensorFlow (.h5)")
     try:
-        disease_model = tf.keras.models.load_model("plant_disease_model.h5")
+        disease_model = tf.keras.models.load_model(os.path.join(BASE_DIR, "plant_disease_model.h5"))
         is_torch_model = False
         print("✅ Loaded TensorFlow model (.h5)")
     except Exception as e2:
