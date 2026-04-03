@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar, Search, Sprout, Info, MapPin, ChevronRight } from 'lucide-react';
 import axios from 'axios';
+import { API_BASE_URL, ML_API_URL } from '../api/config';
 
 const CropCalendar = () => {
   const [crop, setCrop] = useState('');
@@ -18,7 +19,7 @@ const CropCalendar = () => {
     setCalendar(null);
 
     try {
-      const res = await axios.post('http://localhost:5001/api/calendar', { crop, region });
+      const res = await axios.post(`${API_BASE_URL}/api/calendar`, { crop, region });
       setCalendar(res.data.calendar);
     } catch (err) {
       console.error("Calendar generation error:", err);

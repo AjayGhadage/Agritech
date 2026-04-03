@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CloudSun, MapPin, Wind, Droplets, Thermometer, ShieldAlert } from 'lucide-react';
 import axios from 'axios';
+import { API_BASE_URL, ML_API_URL } from '../api/config';
 
 const WeatherAdvisory = () => {
   const [query, setQuery] = useState({ location: '', crop: '' });
@@ -17,7 +18,7 @@ const WeatherAdvisory = () => {
     setData(null);
 
     try {
-      const res = await axios.get(`http://localhost:5001/api/advisory?location=${query.location}&crop=${query.crop}`);
+      const res = await axios.get(`${API_BASE_URL}/api/advisory?location=${query.location}&crop=${query.crop}`);
       
       if (res.data.error) {
          setError(res.data.error);

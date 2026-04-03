@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Landmark, MapPin, Scale, Users, Loader2, ArrowRight, ExternalLink, IndianRupee, AlertCircle, Search } from 'lucide-react';
 import axios from 'axios';
+import { API_BASE_URL, ML_API_URL } from '../api/config';
 
 const Subsidies = () => {
   const [loading, setLoading] = useState(false);
@@ -28,7 +29,7 @@ const Subsidies = () => {
     setSchemes([]);
 
     try {
-      const res = await axios.post('http://localhost:5001/api/subsidies', formData);
+      const res = await axios.post(`${API_BASE_URL}/api/subsidies`, formData);
       if (res.data.schemes) {
         setSchemes(res.data.schemes);
       } else {

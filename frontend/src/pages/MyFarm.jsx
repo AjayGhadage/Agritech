@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Leaf, Calendar, MapPin, CheckCircle, Circle, ArrowRight, Sprout, Loader2, RotateCcw, AlertCircle } from 'lucide-react';
 import axios from 'axios';
+import { API_BASE_URL, ML_API_URL } from '../api/config';
 
 const MyFarm = () => {
   const [farmData, setFarmData] = useState(null);
@@ -27,7 +28,7 @@ const MyFarm = () => {
     setError(null);
 
     try {
-      const res = await axios.post('http://localhost:5001/api/farm/timeline', {
+      const res = await axios.post(`${API_BASE_URL}/api/farm/timeline`, {
         crop, area, location, sowDate
       });
 

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { Leaf, Mail, Lock, User, Loader2 } from 'lucide-react';
 import axios from 'axios';
+import API_BASE_URL from '../api/config';
 
 const AuthPage = () => {
   const { login } = useContext(AuthContext);
@@ -42,16 +43,16 @@ const AuthPage = () => {
       let payload = {};
 
       if (view === 'login') {
-        endpoint = 'http://localhost:5001/api/auth/login';
+        endpoint = `${API_BASE_URL}/api/auth/login`;
         payload = { email: formData.email, password: formData.password };
       } else if (view === 'signup') {
-        endpoint = 'http://localhost:5001/api/auth/signup';
+        endpoint = `${API_BASE_URL}/api/auth/signup`;
         payload = { username: formData.username, email: formData.email, password: formData.password };
       } else if (view === 'forgot') {
-        endpoint = 'http://localhost:5001/api/auth/forgot-password';
+        endpoint = `${API_BASE_URL}/api/auth/forgot-password`;
         payload = { email: formData.email };
       } else if (view === 'reset') {
-        endpoint = 'http://localhost:5001/api/auth/reset-password';
+        endpoint = `${API_BASE_URL}/api/auth/reset-password`;
         payload = { token: resetToken, newPassword: formData.newPassword };
       }
 

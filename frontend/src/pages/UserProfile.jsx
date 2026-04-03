@@ -3,6 +3,7 @@ import { AuthContext } from '../context/AuthContext';
 import { UserCircle, Calendar, Target, ShieldCheck, BadgeIndianRupee, TrendingUp, Sparkles, Leaf, MapPin, Truck, AlertTriangle } from 'lucide-react';
 import ScanHistory from './ScanHistory';
 import axios from 'axios';
+import { API_BASE_URL, ML_API_URL } from '../api/config';
 
 const UserProfile = () => {
   const { user } = useContext(AuthContext);
@@ -25,7 +26,7 @@ const UserProfile = () => {
     e.preventDefault();
     setLoadingTimeline(true);
     try {
-      const res = await axios.post('http://localhost:5001/api/farm/timeline', {
+      const res = await axios.post(`${API_BASE_URL}/api/farm/timeline`, {
         crop,
         sowDate,
         area: 5,

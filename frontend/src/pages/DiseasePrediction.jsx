@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { UploadCloud, CheckCircle, AlertTriangle, ShieldAlert, Loader2, ArrowRight, Microscope, Leaf, Stethoscope, AlertCircle } from 'lucide-react';
 import axios from 'axios';
 import { handleDownloadPDF } from '../utils/generatePDF';
+import { API_BASE_URL, ML_API_URL } from '../api/config';
 
 const DiseasePrediction = () => {
   const [file, setFile] = useState(null);
@@ -49,7 +50,7 @@ const DiseasePrediction = () => {
         try {
           const userObj = JSON.parse(localStorage.getItem('user'));
           const userId = userObj ? userObj.email : 'guest';
-          await axios.post('http://localhost:5001/api/scan-history', {
+          await axios.post(`${API_BASE_URL}/api/scan-history`, {
             userId,
             disease: res.data.disease,
             confidence: res.data.confidence,

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { MapPin, Truck, TrendingUp, IndianRupee, Loader2, Navigation, AlertCircle, ArrowRight, Star } from 'lucide-react';
 import axios from 'axios';
+import { API_BASE_URL, ML_API_URL } from '../api/config';
 
 const Logistics = () => {
   const [formData, setFormData] = useState({ crop: '', quantity: '', location: '' });
@@ -19,7 +20,7 @@ const Logistics = () => {
     setResult(null);
 
     try {
-      const res = await axios.post('http://localhost:5001/api/logistics', {
+      const res = await axios.post(`${API_BASE_URL}/api/logistics`, {
         crop: formData.crop,
         quantity: parseInt(formData.quantity),
         location: formData.location

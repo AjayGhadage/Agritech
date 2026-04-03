@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Search, MapPin, Sprout, TrendingUp, TrendingDown, Minus, BrainCircuit, Navigation, Phone, ArrowLeftRight, Filter, Building2, Store, UserCheck, Volume2, Calendar, CloudSun, Zap } from 'lucide-react';
 import axios from 'axios';
+import API_BASE_URL from '../api/config';
 import {
   LineChart,
   Line,
@@ -39,7 +40,7 @@ const MarketPrices = () => {
     setSpeaking(false);
 
     try {
-      const res = await axios.get(`http://localhost:5001/api/prices?crop=${query.crop}&location=${query.location}`);
+      const res = await axios.get(`${API_BASE_URL}/api/prices?crop=${query.crop}&location=${query.location}`);
       if (res.data && res.data.final_estimate > 0) {
         setData(res.data);
         console.log(`[DEBUG] Marketplace Data Loaded: ${res.data.buyer_list?.length} partners received.`);
@@ -47,7 +48,7 @@ const MarketPrices = () => {
         
         if (isComparing && query.compareLocation) {
           try {
-            const compRes = await axios.get(`http://localhost:5001/api/prices?crop=${query.crop}&location=${query.compareLocation}`);
+            const compRes = await axios.get(`${API_BASE_URL}/api/prices?crop=${query.crop}&location=${query.compareLocation}`);
             if (compRes.data && compRes.data.final_estimate > 0) {
               setCompareData(compRes.data);
             }

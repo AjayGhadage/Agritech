@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, X, Send, Mic, Square, Globe, Volume2, VolumeX } from 'lucide-react';
 import axios from 'axios';
+import API_BASE_URL from '../api/config';
 
 const ChatbotOverlay = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -66,7 +67,7 @@ const ChatbotOverlay = () => {
     setIsLoading(true);
 
     try {
-      const res = await axios.post('http://localhost:5001/chat', { message: userMessage });
+      const res = await axios.post(`${API_BASE_URL}/chat`, { message: userMessage });
       const reply = res.data.reply || "Sorry, I couldn't understand that.";
       setMessages(prev => [...prev, { role: 'bot', text: reply }]);
       // Speak the reply
@@ -112,7 +113,7 @@ const ChatbotOverlay = () => {
 
       // Send transcript to chat API
       try {
-        const res = await axios.post('http://localhost:5001/chat', { message: transcript });
+        const res = await axios.post(`${API_BASE_URL}/chat`, { message: transcript });
         const reply = res.data.reply || "Sorry, I couldn't understand that.";
         setMessages(prev => [...prev, { role: 'bot', text: reply }]);
         // Speak the reply

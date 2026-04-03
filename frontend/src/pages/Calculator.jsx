@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Calculator as CalcIcon, Pickaxe, Sprout, Loader2, ArrowRight, IndianRupee, PieChart, Info, AlertCircle } from 'lucide-react';
 import axios from 'axios';
+import { API_BASE_URL, ML_API_URL } from '../api/config';
 
 const Calculator = () => {
   const [loading, setLoading] = useState(false);
@@ -22,7 +23,7 @@ const Calculator = () => {
     setResult(null);
 
     try {
-      const res = await axios.post('http://localhost:5001/api/calculator', formData);
+      const res = await axios.post(`${API_BASE_URL}/api/calculator`, formData);
       if (res.data.calculator) {
         setResult(res.data.calculator);
       } else {

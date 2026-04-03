@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Leaf, Droplets, ThermometerSun, TestTube, CloudRain, CheckCircle, CalendarClock, Scale, Sprout, MapPin, Zap, SlidersHorizontal, Loader2, FlaskConical } from 'lucide-react';
 import axios from 'axios';
+import { API_BASE_URL, ML_API_URL } from '../api/config';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer } from 'recharts';
 import { handleDownloadPDF } from '../utils/generatePDF';
 
@@ -53,8 +54,8 @@ const CropRecommendation = () => {
 
     try {
       const [weatherRes, regionalRes] = await Promise.allSettled([
-        axios.get(`http://localhost:5001/api/advisory?location=${encodeURIComponent(smartData.location)}`),
-        axios.get(`http://localhost:5001/api/crop/regional?location=${encodeURIComponent(smartData.location)}`)
+        axios.get(`${API_BASE_URL}/api/advisory?location=${encodeURIComponent(smartData.location)}`),
+        axios.get(`${API_BASE_URL}/api/crop/regional?location=${encodeURIComponent(smartData.location)}`)
       ]);
 
       // Weather
@@ -90,7 +91,7 @@ const CropRecommendation = () => {
       : { nitrogen: Number(formData.nitrogen), phosphorus: Number(formData.phosphorus), potassium: Number(formData.potassium), temperature: Number(formData.temperature), humidity: Number(formData.humidity), ph: Number(formData.ph), rainfall: Number(formData.rainfall) };
 
     try {
-      const res = await axios.post('http://localhost:8001/predict-crop', payload);
+      const res = await axios.post(`${ML_API_URL}/predict-crop`, payload);
       if (res.data.error) { setError(res.data.error); }
       else {
         const predicted = res.data.recommended_crop?.toLowerCase().trim();
@@ -111,7 +112,7 @@ const CropRecommendation = () => {
         setResult(res.data);
       }
     } catch {
-      setError('Failed to connect to the prediction service. Ensure ML service is running on port 8001.');
+      setError(`Failed to connect to the prediction service. Ensure ML service is running at ${ML_API_URL}.`);
     } finally {
       setLoading(false);
     }

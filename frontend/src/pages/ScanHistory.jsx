@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { Clock, CheckCircle, AlertTriangle, ShieldCheck } from 'lucide-react';
 import axios from 'axios';
+import { API_BASE_URL, ML_API_URL } from '../api/config';
 
 const ScanHistory = () => {
   const { user } = useContext(AuthContext);
@@ -12,7 +13,7 @@ const ScanHistory = () => {
     const fetchHistory = async () => {
       try {
         const userId = user?.email || 'guest';
-        const res = await axios.get(`http://localhost:5001/api/scan-history/${userId}`);
+        const res = await axios.get(`${API_BASE_URL}/api/scan-history/${userId}`);
         setHistory(res.data);
       } catch (err) {
         console.error("Failed to fetch scan history", err);
