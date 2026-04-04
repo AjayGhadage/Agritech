@@ -59,10 +59,11 @@ const MarketPrices = () => {
       } else {
         setError(`No reliable price data found for ${query.crop} in ${query.location}.`);
       }
-    } catch (err) {
-      console.error(err);
-      setError("Failed to fetch market prices. Check your connection.");
-    } finally {
+      } catch (err) {
+        console.error(err);
+        const errorMsg = err.response?.data?.message || err.response?.data?.error || "Failed to fetch market prices. Check your connection.";
+        setError(errorMsg);
+      } finally {
       setLoading(false);
     }
   };

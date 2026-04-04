@@ -340,7 +340,13 @@ async def predict_disease(file: UploadFile = File(...)):
         }
 
     except Exception as e:
-        return {"error": str(e)}
+        print(f"DISEASE PREDICTION ERROR: {e}")
+        return {
+            "disease": "Diagnosis Error",
+            "confidence": 0,
+            "advice": f"🚨 Diagnosis failed: {str(e)}",
+            "error": str(e)
+        }
 
 # ============================
 # 💰 PRICE SCRAPER

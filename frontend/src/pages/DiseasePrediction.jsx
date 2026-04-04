@@ -38,7 +38,7 @@ const DiseasePrediction = () => {
     formData.append("file", file);
 
     try {
-      const res = await axios.post(`${ML_API_URL}/predict-disease`, formData, {
+      const res = await axios.post(`${API_BASE_URL}/api/disease`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       if (res.data.error) {
