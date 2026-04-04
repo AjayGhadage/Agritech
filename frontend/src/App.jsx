@@ -20,9 +20,8 @@ import Calculator from './pages/Calculator';
 import Logistics from './pages/Logistics';
 import AboutUs from './pages/AboutUs';
 import { AuthProvider, AuthContext } from './context/AuthContext';
+import { GOOGLE_CLIENT_ID } from './api/config';
 import './index.css';
-
-const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || "";
 
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = React.useContext(AuthContext);
